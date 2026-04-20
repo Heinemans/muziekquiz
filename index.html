@@ -93,6 +93,44 @@
   .btn-spotify { background: #1db954; color: #fff; }
   .btn-youtube { background: #ff0000; color: #fff; }
   .btn-answer  { background: #ffb300; color: #222; }
+  /* Ingebouwde muziekspeler */
+  .player-wrap {
+    background: #000;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 10px 0 14px;
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+  .player-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .yt-thumb {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+  }
+  .yt-play-icon {
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+  .yt-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+  }
   .btn-primary { background: #2d6cdf; color: #fff; }
   .btn-secondary { background: #eee; color: #222; }
   .btn-good  { background: #2e7d32; color: #fff; }
@@ -211,8 +249,15 @@
       <div class="question-text">Welk nummer is dit?</div>
       <div class="hint" id="hint"></div>
 
-      <a id="spotifyBtn" class="btn btn-spotify" href="#" target="_blank" rel="noopener">▶ Spotify</a>
-      <a id="youtubeBtn" class="btn btn-youtube" href="#" target="_blank" rel="noopener">▶ YouTube</a>
+      <!-- Ingebouwde YouTube-speler (vervangt de YouTube-knop) -->
+      <div id="playerWrap" class="player-wrap">
+        <div class="yt-thumb" onclick="loadPlayer()">
+          <div class="yt-play-icon">▶</div>
+          <div class="yt-subtitle">Tik om het lied te horen</div>
+        </div>
+      </div>
+
+      <a id="spotifyBtn" class="btn btn-spotify" href="#" target="_blank" rel="noopener">♪ Of luister in Spotify</a>
       <button class="btn-answer" onclick="toggleAnswer()" id="answerBtn">Toon antwoord</button>
 
       <div id="answerBox" class="answer-box hidden">
@@ -365,10 +410,25 @@ function renderQuestion() {
   document.getElementById('answerArtist').textContent = q.artist;
   document.getElementById('answerBox').classList.add('hidden');
   document.getElementById('answerBtn').textContent = 'Toon antwoord';
-  // Set real links on the Spotify/YouTube buttons (werkt ook in WhatsApp-browser)
+  // Spotify-link instellen
   document.getElementById('spotifyBtn').href = 'https://open.spotify.com/track/' + q.sp;
-  document.getElementById('youtubeBtn').href = 'https://www.youtube.com/watch?v=' + q.yt;
+  // Reset de speler naar de grote play-knop (geen iframe nog — speelt pas bij tikken)
+  document.getElementById('playerWrap').innerHTML =
+    '<div class="yt-thumb" onclick="loadPlayer()">' +
+      '<div class="yt-play-icon">▶</div>' +
+      '<div class="yt-subtitle">Tik om het lied te horen</div>' +
+    '</div>';
   answerShown = false;
+}
+
+function loadPlayer() {
+  const q = questions[current];
+  // Vervang de play-knop door de echte YouTube-speler, die meteen afspeelt
+  document.getElementById('playerWrap').innerHTML =
+    '<iframe src="https://www.youtube.com/embed/' + q.yt +
+    '?autoplay=1&playsinline=1&rel=0" ' +
+    'allow="autoplay; encrypted-media; picture-in-picture" ' +
+    'allowfullscreen></iframe>';
 }
 
 function renderTeams() {
