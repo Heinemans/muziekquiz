@@ -9,213 +9,106 @@
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    background: #fff8e7;
-    color: #222;
-    font-size: 22px;
-    line-height: 1.4;
-    min-height: 100vh;
+    background: #fff8e7; color: #222;
+    font-size: 22px; line-height: 1.4; min-height: 100vh;
   }
-  .app {
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 20px 18px 40px;
-  }
-  h1 {
-    font-size: 38px;
-    text-align: center;
-    margin: 10px 0 20px;
-    color: #8b4513;
-  }
-  h2 {
-    font-size: 28px;
-    margin: 10px 0;
-  }
+  .app { max-width: 560px; margin: 0 auto; padding: 20px 18px 40px; }
+  h1 { font-size: 38px; text-align: center; margin: 10px 0 20px; color: #8b4513; }
+  h2 { font-size: 28px; margin: 10px 0; }
+  h3 { font-size: 24px; margin: 8px 0; }
   .card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 24px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    margin-bottom: 18px;
+    background: #fff; border-radius: 18px; padding: 24px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 18px;
   }
-  .question-number {
-    font-size: 20px;
-    color: #666;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-  .question-text {
-    font-size: 30px;
-    font-weight: 700;
-    text-align: center;
-    margin: 12px 0 18px;
-    color: #222;
-  }
-  .hint {
-    font-size: 22px;
-    text-align: center;
-    color: #555;
+  .round-badge {
+    display: inline-block;
+    background: #8b4513; color: #fff;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 16px; font-weight: 700;
     margin-bottom: 10px;
   }
+  .question-number { font-size: 18px; color: #666; margin-bottom: 8px; }
+  .question-text { font-size: 30px; font-weight: 700; text-align: center; margin: 14px 0 12px; color: #222; }
+  .hint { font-size: 20px; text-align: center; color: #555; margin: 0 0 10px; }
+  .intro-title { font-size: 34px; font-weight: 800; text-align: center; margin: 14px 0 10px; color: #8b4513; }
+  .intro-text  { font-size: 22px; text-align: center; margin: 8px 0 18px; color: #444; }
   button, .btn {
-    display: block;
-    width: 100%;
-    padding: 22px 18px;
-    font-size: 24px;
-    font-weight: 700;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    margin: 10px 0;
-    font-family: inherit;
-    min-height: 68px;
-    touch-action: manipulation;
-    text-align: center;
-    text-decoration: none;
-    box-sizing: border-box;
-    line-height: 1.2;
+    display: block; width: 100%;
+    padding: 22px 18px; font-size: 24px; font-weight: 700;
+    border: none; border-radius: 14px; cursor: pointer;
+    margin: 10px 0; font-family: inherit; min-height: 68px;
+    touch-action: manipulation; text-align: center;
+    text-decoration: none; box-sizing: border-box; line-height: 1.2;
   }
   button:active, .btn:active { transform: scale(0.98); }
   a.btn { color: #fff; }
   a.btn-answer { color: #222; }
-  .warning-banner {
-    background: #fff3cd;
-    border: 2px solid #ffb300;
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 16px;
-    font-size: 18px;
-    color: #5d4200;
-    text-align: center;
-  }
   .btn-spotify { background: #1db954; color: #fff; }
-  .btn-youtube { background: #ff0000; color: #fff; }
   .btn-answer  { background: #ffb300; color: #222; }
-  /* Ingebouwde muziekspeler */
-  .player-wrap {
-    background: #000;
-    border-radius: 14px;
-    overflow: hidden;
-    margin: 10px 0 14px;
-    aspect-ratio: 16 / 9;
-    position: relative;
-  }
-  .player-wrap iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-  }
-  .yt-thumb {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #b30000, #ff0000);
-    color: #fff;
-    cursor: pointer;
-    text-align: center;
-    padding: 20px;
-  }
-  .yt-play-icon {
-    font-size: 72px;
-    line-height: 1;
-    margin-bottom: 8px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.4);
-  }
-  .yt-subtitle {
-    font-size: 22px;
-    font-weight: 700;
-  }
   .btn-primary { background: #2d6cdf; color: #fff; }
   .btn-secondary { background: #eee; color: #222; }
   .btn-good  { background: #2e7d32; color: #fff; }
   .btn-wrong { background: #c62828; color: #fff; }
+  .btn-big { font-size: 28px; padding: 26px 18px; min-height: 80px; }
   .btn-row { display: flex; gap: 12px; }
   .btn-row button { margin: 10px 0; }
   .answer-box {
-    background: #fff3cd;
-    border: 3px solid #ffb300;
-    border-radius: 14px;
-    padding: 20px;
-    margin: 14px 0;
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    color: #5d4200;
+    background: #fff3cd; border: 3px solid #ffb300; border-radius: 14px;
+    padding: 20px; margin: 14px 0; text-align: center;
+    font-size: 26px; font-weight: 700; color: #5d4200;
   }
-  .answer-box .artist {
-    display: block;
-    font-size: 22px;
-    font-weight: 500;
-    color: #6d5100;
-    margin-top: 6px;
-  }
+  .answer-box .artist { display: block; font-size: 22px; font-weight: 500; color: #6d5100; margin-top: 6px; }
   .hidden { display: none !important; }
   .team-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin: 10px 0;
-    padding: 14px;
-    background: #fff;
-    border-radius: 12px;
-    border: 2px solid #e0d4a8;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; margin: 10px 0; padding: 14px;
+    background: #fff; border-radius: 12px; border: 2px solid #e0d4a8;
   }
   .team-name { font-size: 24px; font-weight: 700; flex: 1; }
   .team-score {
-    font-size: 30px;
-    font-weight: 800;
-    color: #2d6cdf;
-    min-width: 60px;
-    text-align: center;
+    font-size: 30px; font-weight: 800; color: #2d6cdf;
+    min-width: 60px; text-align: center;
   }
   .score-buttons { display: flex; gap: 8px; margin-top: 8px; }
   .score-buttons button {
-    flex: 1;
-    padding: 14px 6px;
-    font-size: 18px;
-    margin: 0;
-    min-height: 54px;
+    flex: 1; padding: 14px 6px; font-size: 18px;
+    margin: 0; min-height: 54px;
   }
   .team-input {
-    width: 100%;
-    padding: 16px;
-    font-size: 22px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    font-family: inherit;
+    width: 100%; padding: 16px; font-size: 22px;
+    border: 2px solid #ccc; border-radius: 10px;
+    margin-bottom: 10px; font-family: inherit;
   }
-  .small-btn {
-    padding: 12px 16px;
-    font-size: 18px;
-    min-height: 48px;
-    width: auto;
-  }
+  .small-btn { padding: 12px 16px; font-size: 18px; min-height: 48px; width: auto; }
   .center { text-align: center; }
-  footer {
-    text-align: center;
-    font-size: 16px;
-    color: #888;
-    margin-top: 24px;
-  }
+  footer { text-align: center; font-size: 16px; color: #888; margin-top: 24px; }
   .progress {
-    height: 10px;
-    background: #e0d4a8;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 8px 0 14px;
+    height: 10px; background: #e0d4a8; border-radius: 5px;
+    overflow: hidden; margin: 8px 0 14px;
   }
-  .progress-bar {
-    height: 100%;
-    background: #2d6cdf;
-    transition: width 0.3s;
+  .progress-bar { height: 100%; background: #2d6cdf; transition: width 0.3s; }
+  .player-wrap {
+    background: #000; border-radius: 14px; overflow: hidden;
+    margin: 10px 0 14px; aspect-ratio: 16 / 9; position: relative;
+  }
+  .player-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .yt-thumb {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    color: #fff; cursor: pointer; text-align: center; padding: 20px;
+  }
+  .yt-play-icon {
+    font-size: 72px; line-height: 1; margin-bottom: 8px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+  .yt-subtitle { font-size: 22px; font-weight: 700; }
+  .warning-banner {
+    background: #fff3cd; border: 2px solid #ffb300; border-radius: 12px;
+    padding: 14px; margin-bottom: 16px; font-size: 18px;
+    color: #5d4200; text-align: center;
   }
 </style>
 </head>
@@ -223,13 +116,11 @@
 <div class="app">
   <h1>🎵 Muziekquiz 🎵</h1>
 
-  <!-- Waarschuwing als in WhatsApp/Messenger-browser wordt geopend -->
   <div id="inAppWarning" class="warning-banner hidden">
-    ⚠️ Open deze quiz in <b>Safari</b> of <b>Chrome</b>, anders werken de muziekknoppen niet.
-    Tik rechtsonder op de drie puntjes (WhatsApp) en kies <b>"Open in externe browser"</b>.
+    ⚠️ Open deze quiz in <b>Safari</b> of <b>Chrome</b>. In WhatsApp werkt de Spotify-knop niet.
   </div>
 
-  <!-- SETUP SCHERM -->
+  <!-- SETUP -->
   <div id="setup" class="card">
     <h2 class="center">Teams instellen</h2>
     <p class="center">Vul de namen van de teams in. Laat leeg om over te slaan.</p>
@@ -241,32 +132,35 @@
     <button class="btn-secondary" onclick="skipTeams()">Zonder teams spelen</button>
   </div>
 
-  <!-- QUIZ SCHERM -->
+  <!-- QUIZ -->
   <div id="quiz" class="hidden">
     <div class="card">
-      <div class="question-number" id="qnum">Vraag 1 van 15</div>
-      <div class="progress"><div class="progress-bar" id="pbar"></div></div>
-      <div class="question-text">Welk nummer is dit?</div>
-      <div class="hint" id="hint"></div>
+      <span class="round-badge" id="roundBadge">Ronde 1</span>
+      <div class="question-number" id="qNum">Vraag 1 van 1</div>
+      <div class="progress"><div class="progress-bar" id="pBar"></div></div>
 
-      <!-- Ingebouwde YouTube-speler (vervangt de YouTube-knop) -->
-      <div id="playerWrap" class="player-wrap">
-        <div class="yt-thumb" onclick="loadPlayer()">
-          <div class="yt-play-icon">▶</div>
-          <div class="yt-subtitle">Tik om het lied te horen</div>
-        </div>
+      <!-- Intro (tussenscherm per ronde) -->
+      <div id="introContent" class="hidden">
+        <div class="intro-title" id="introTitle"></div>
+        <div class="intro-text" id="introText"></div>
+        <button class="btn-primary btn-big" onclick="nextQ()">Start deze ronde ▶</button>
       </div>
 
-      <a id="spotifyBtn" class="btn btn-spotify" href="#" target="_blank" rel="noopener">♪ Of luister in Spotify</a>
-      <button class="btn-answer" onclick="toggleAnswer()" id="answerBtn">Toon antwoord</button>
-
-      <div id="answerBox" class="answer-box hidden">
-        <span id="answerTitle"></span>
-        <span class="artist" id="answerArtist"></span>
+      <!-- Normale vraag -->
+      <div id="questionContent" class="hidden">
+        <div id="playerWrap" class="player-wrap hidden"></div>
+        <div class="question-text" id="questionText"></div>
+        <div class="hint" id="hintText"></div>
+        <a id="spotifyBtn" class="btn btn-spotify hidden" href="#" target="_blank" rel="noopener">♪ Of luister in Spotify</a>
+        <button class="btn-answer" onclick="toggleAnswer()" id="answerBtn">Toon antwoord</button>
+        <div id="answerBox" class="answer-box hidden">
+          <span id="answerTitle"></span>
+          <span class="artist" id="answerArtist"></span>
+        </div>
       </div>
     </div>
 
-    <!-- TEAMS / SCORE -->
+    <!-- SCORES -->
     <div id="teamsCard" class="card">
       <h2 class="center">Scores</h2>
       <div id="teamsList"></div>
@@ -291,87 +185,96 @@
     </div>
   </div>
 
-  <footer>
-    Tip: installeer Spotify en YouTube op de telefoon voor de beste ervaring.
-  </footer>
+  <footer>Tip: open in Safari voor de beste ervaring.</footer>
 </div>
 
 <script>
 // ============================================================
-// 15 klassiekers — ±30 min met ca. 2 min per nummer
-// Elk nummer heeft een directe YouTube- en Spotify-link.
+// 5 RONDES — oudere doelgroep, geen dubbele artiesten bij muziek
 // ============================================================
-const questions = [
-  { title: "Bloed, Zweet en Tranen", artist: "André Hazes",
-    hint: "Nederlandse klassieker",
-    yt: "uel8ToMHGBM", sp: "5ZLkc5RY1NM4FtGWEd6HOE" },
-
-  { title: "Dancing Queen", artist: "ABBA",
-    hint: "Zweedse wereldhit uit 1976",
-    yt: "xFrGuyw1V8s", sp: "0GjEhVFGZW8afUYGChu3Rr" },
-
-  { title: "Can't Help Falling in Love", artist: "Elvis Presley",
-    hint: "The King of Rock 'n Roll",
-    yt: "vGJTaP6anOU", sp: "44AyOl4qVkzS48vBsbNXaC" },
-
-  { title: "Tulpen uit Amsterdam", artist: "Herman Emmink",
-    hint: "Typisch Hollands lied",
-    yt: "85U-77_5lWk", sp: "2ed6J69WI347dje5JzVl2x" },
-
-  { title: "My Way", artist: "Frank Sinatra",
-    hint: "Amerikaanse crooner",
-    yt: "qQzdAsjWGPg", sp: "3spdoTYpuCpmq19tuD0bOe" },
-
-  { title: "Waarheen, Waarvoor", artist: "Mieke Telkamp",
-    hint: "Nederlandse evergreen op de melodie van Amazing Grace",
-    yt: "aBhQU6_tOvs", sp: "7tLxcHzbbeezs1auDLq5lQ" },
-
-  { title: "Let It Be", artist: "The Beatles",
-    hint: "Britse band uit Liverpool",
-    yt: "CGj85pVzRJs", sp: "2IEWy03b7dy4JlccWSTWjA" },
-
-  { title: "'n Beetje Verliefd", artist: "André Hazes",
-    hint: "Over verliefdheid",
-    yt: "3kufNNxyACg", sp: "54NbN1T9kp5jHmg657fP0G" },
-
-  { title: "Delilah", artist: "Tom Jones",
-    hint: "Welshe zanger",
-    yt: "Qvo5SeAwz88", sp: "2v8B8d17Xxu9uLU5sNiHSL" },
-
-  { title: "Bij ons in de Jordaan", artist: "Johnny Jordaan",
-    hint: "Amsterdamse levenslied-zanger",
-    yt: "3p7BijO0Cv4", sp: "0sOwSMwz1ZfzTGI8s13cO6" },
-
-  { title: "Waterloo", artist: "ABBA",
-    hint: "Winnaar Eurovisie Songfestival 1974",
-    yt: "Sj_9CiNkkn4", sp: "3Dy4REq8O09IlgiwuHQ3sk" },
-
-  { title: "Het Dorp", artist: "Wim Sonneveld",
-    hint: "Nederlands cabaret",
-    yt: "C8Ff5OEUzd8", sp: "1xqCcSMtxX38U0HpV6lRGX" },
-
-  { title: "Suspicious Minds", artist: "Elvis Presley",
-    hint: "Uit 1969",
-    yt: "WrMGGouem3c", sp: "1H5IfYyIIAlgDX8zguUzns" },
-
-  { title: "Mamma Mia", artist: "ABBA",
-    hint: "Ook een musical en film",
-    yt: "unfzfe8f9NI", sp: "2TxCwUlqaOH3TIyJqGgR91" },
-
-  { title: "Yesterday", artist: "The Beatles",
-    hint: "Paul McCartney zingt",
-    yt: "NrgmdOz227I", sp: "3BQHpFgAp4l80e1XslIjNI" }
+const rounds = [
+  {
+    title: "Raad het nummer",
+    intro: "Je hoort een stukje van een lied. Welk nummer is dit?",
+    questions: [
+      { type: "music", q: "Welk nummer is dit?", answer: "Het Dorp", artist: "Wim Sonneveld",
+        yt: "C8Ff5OEUzd8", sp: "1xqCcSMtxX38U0HpV6lRGX", hint: "Nederlands cabaret" },
+      { type: "music", q: "Welk nummer is dit?", answer: "Zij Gelooft In Mij", artist: "André Hazes",
+        yt: "VAc9opfAEYQ", sp: "4GrQPpjaZmBf67b9Uh83T8", hint: "Nederlandse klassieker uit 1981" },
+      { type: "music", q: "Welk nummer is dit?", answer: "Can't Help Falling in Love", artist: "Elvis Presley",
+        yt: "vGJTaP6anOU", sp: "44AyOl4qVkzS48vBsbNXaC", hint: "The King — uit Blue Hawaii" },
+      { type: "music", q: "Welk nummer is dit?", answer: "Hey Jude", artist: "The Beatles",
+        yt: "A_MjCqQoLLA", sp: "0aym2LBJBk9DAYuHHutrIl", hint: "Britse klassieker uit 1968" }
+    ]
+  },
+  {
+    title: "Maak de zin af",
+    intro: "Geen muziek nu — even rustmoment. Lees de eerste zin voor. Welk team zegt de volgende zin erachter?",
+    questions: [
+      { type: "text", q: "\u201CDit dorp, ik weet nog hoe het was \u2026\u201D", answer: "\u2026 de boerenkind\u2019ren in de klas", artist: "Wim Sonneveld — Het Dorp" },
+      { type: "text", q: "\u201CZij gelooft in mij, en ze kust \u2026\u201D", answer: "\u2026 mijn tranen weg", artist: "André Hazes — Zij Gelooft In Mij" },
+      { type: "text", q: "\u201CLove me tender, love me sweet \u2026\u201D", answer: "\u2026 never let me go", artist: "Elvis Presley — Love Me Tender" },
+      { type: "text", q: "\u201COh oh Den Haag \u2026\u201D", answer: "\u2026 mooie stad achter de duinen", artist: "Harrie Jekkers" },
+      { type: "text", q: "\u201CAls de lente komt, dan stuur ik jou \u2026\u201D", answer: "\u2026 tulpen uit Amsterdam", artist: "Herman Emmink — Tulpen uit Amsterdam" }
+    ]
+  },
+  {
+    title: "Raad de artiest",
+    intro: "Je hoort weer een stukje. Deze keer: welke artiest zingt dit?",
+    questions: [
+      { type: "music", q: "Welke artiest zingt dit?", answer: "Rob de Nijs", artist: "Malle Babbe",
+        yt: "ZbQQrtPCU5Y", sp: "2Upwdf4DiIbRKvt9mZahAh", hint: "Nederlandse zanger, grote hit uit 1975" },
+      { type: "music", q: "Welke artiest zingt dit?", answer: "ABBA", artist: "Dancing Queen",
+        yt: "xFrGuyw1V8s", sp: "0GjEhVFGZW8afUYGChu3Rr", hint: "Zweedse groep met 4 leden" },
+      { type: "music", q: "Welke artiest zingt dit?", answer: "Tom Jones", artist: "Delilah",
+        yt: "Qvo5SeAwz88", sp: "2v8B8d17Xxu9uLU5sNiHSL", hint: "Welshe zanger" },
+      { type: "music", q: "Welke artiest zingt dit?", answer: "Mieke Telkamp", artist: "Waarheen, Waarvoor",
+        yt: "aBhQU6_tOvs", sp: "7tLxcHzbbeezs1auDLq5lQ", hint: "Nederlandse zangeres — melodie van Amazing Grace" }
+    ]
+  },
+  {
+    title: "Algemene muziekvragen",
+    intro: "Geen muziek — gewoon even denken. Welk team weet het eerste het antwoord?",
+    questions: [
+      { type: "text", q: "Welke zanger stond bekend als \u201CThe King\u201D?", answer: "Elvis Presley" },
+      { type: "text", q: "Uit welk land komen The Beatles?", answer: "Engeland (Liverpool)" },
+      { type: "text", q: "Uit welk land komt de groep ABBA?", answer: "Zweden" },
+      { type: "text", q: "Welke Nederlandse stad komt vaak voor in onze liedjes?", answer: "Amsterdam" },
+      { type: "text", q: "Hoeveel leden had de groep ABBA?", answer: "4 (Agnetha, Björn, Benny, Anni-Frid)" },
+      { type: "text", q: "Hoe noemen we André Hazes ook wel?", answer: "De volkszanger / De Stem van het Volk" }
+    ]
+  },
+  {
+    title: "Bonus: welk jaar ongeveer?",
+    intro: "Laatste ronde! Luister en raad: uit welk decennium komt dit liedje?",
+    questions: [
+      { type: "music", q: "Uit welk decennium komt dit nummer?", answer: "Jaren 60 (1969)", artist: "Frank Sinatra — My Way",
+        yt: "qQzdAsjWGPg", sp: "3spdoTYpuCpmq19tuD0bOe", hint: "Amerikaanse crooner" },
+      { type: "music", q: "Uit welk decennium komt dit nummer?", answer: "Jaren 50 (1955)", artist: "Johnny Jordaan — Bij ons in de Jordaan",
+        yt: "3p7BijO0Cv4", sp: "0sOwSMwz1ZfzTGI8s13cO6", hint: "Amsterdamse zanger" },
+      { type: "music", q: "Uit welk decennium komt dit nummer?", answer: "Jaren 50 (1956)", artist: "Herman Emmink — Tulpen uit Amsterdam",
+        yt: "85U-77_5lWk", sp: "2ed6J69WI347dje5JzVl2x", hint: "Typisch Hollands lied" }
+    ]
+  }
 ];
+
+// Platgeslagen lijst: intro-slide + vragen per ronde
+const slides = [];
+rounds.forEach((r, i) => {
+  slides.push({ type: "intro", roundNum: i + 1, roundTitle: r.title, intro: r.intro });
+  r.questions.forEach(q => {
+    slides.push(Object.assign({}, q, { roundNum: i + 1, roundTitle: r.title }));
+  });
+});
 
 let current = 0;
 let teams = [];
 let answerShown = false;
 
-// Detecteer in-app browsers (WhatsApp, Messenger, Instagram) — daar werken links vaak niet goed
-(function detectInAppBrowser() {
+// Detecteer WhatsApp/Messenger/Instagram
+(function() {
   const ua = navigator.userAgent || '';
-  const inApp = /WhatsApp|FBAN|FBAV|Instagram|Line|MicroMessenger/i.test(ua);
-  if (inApp) {
+  if (/WhatsApp|FBAN|FBAV|Instagram|Line|MicroMessenger/i.test(ua)) {
     document.getElementById('inAppWarning').classList.remove('hidden');
   }
 })();
@@ -397,35 +300,66 @@ function showQuiz() {
   document.getElementById('quiz').classList.remove('hidden');
   document.getElementById('finish').classList.add('hidden');
   current = 0;
-  renderQuestion();
+  renderSlide();
   renderTeams();
 }
 
-function renderQuestion() {
-  const q = questions[current];
-  document.getElementById('qnum').textContent = 'Vraag ' + (current + 1) + ' van ' + questions.length;
-  document.getElementById('pbar').style.width = (((current + 1) / questions.length) * 100) + '%';
-  document.getElementById('hint').textContent = 'Tip: ' + q.hint;
-  document.getElementById('answerTitle').textContent = q.title;
-  document.getElementById('answerArtist').textContent = q.artist;
-  document.getElementById('answerBox').classList.add('hidden');
-  document.getElementById('answerBtn').textContent = 'Toon antwoord';
-  // Spotify-link instellen
-  document.getElementById('spotifyBtn').href = 'https://open.spotify.com/track/' + q.sp;
-  // Reset de speler naar de grote play-knop (geen iframe nog — speelt pas bij tikken)
-  document.getElementById('playerWrap').innerHTML =
-    '<div class="yt-thumb" onclick="loadPlayer()">' +
-      '<div class="yt-play-icon">▶</div>' +
-      '<div class="yt-subtitle">Tik om het lied te horen</div>' +
-    '</div>';
-  answerShown = false;
+function renderSlide() {
+  const s = slides[current];
+  document.getElementById('roundBadge').textContent =
+    'Ronde ' + s.roundNum + ' — ' + s.roundTitle;
+  document.getElementById('qNum').textContent =
+    'Slide ' + (current + 1) + ' van ' + slides.length;
+  document.getElementById('pBar').style.width =
+    (((current + 1) / slides.length) * 100) + '%';
+
+  const intro = document.getElementById('introContent');
+  const qContent = document.getElementById('questionContent');
+  const teamsCard = document.getElementById('teamsCard');
+
+  if (s.type === 'intro') {
+    intro.classList.remove('hidden');
+    qContent.classList.add('hidden');
+    if (teams.length > 0) teamsCard.classList.add('hidden');
+    document.getElementById('introTitle').textContent =
+      'Ronde ' + s.roundNum + ': ' + s.roundTitle;
+    document.getElementById('introText').textContent = s.intro;
+  } else {
+    intro.classList.add('hidden');
+    qContent.classList.remove('hidden');
+    if (teams.length > 0) teamsCard.classList.remove('hidden');
+
+    document.getElementById('questionText').textContent = s.q;
+    document.getElementById('hintText').textContent = s.hint ? 'Tip: ' + s.hint : '';
+    document.getElementById('answerTitle').textContent = s.answer;
+    document.getElementById('answerArtist').textContent = s.artist || '';
+    document.getElementById('answerBox').classList.add('hidden');
+    document.getElementById('answerBtn').textContent = 'Toon antwoord';
+    answerShown = false;
+
+    const playerWrap = document.getElementById('playerWrap');
+    const spotBtn = document.getElementById('spotifyBtn');
+    if (s.type === 'music') {
+      playerWrap.classList.remove('hidden');
+      spotBtn.classList.remove('hidden');
+      spotBtn.href = 'https://open.spotify.com/track/' + s.sp;
+      playerWrap.innerHTML =
+        '<div class="yt-thumb" onclick="loadPlayer()">' +
+          '<div class="yt-play-icon">\u25B6</div>' +
+          '<div class="yt-subtitle">Tik om het lied te horen</div>' +
+        '</div>';
+    } else {
+      playerWrap.classList.add('hidden');
+      playerWrap.innerHTML = '';
+      spotBtn.classList.add('hidden');
+    }
+  }
 }
 
 function loadPlayer() {
-  const q = questions[current];
-  // Vervang de play-knop door de echte YouTube-speler, die meteen afspeelt
+  const s = slides[current];
   document.getElementById('playerWrap').innerHTML =
-    '<iframe src="https://www.youtube.com/embed/' + q.yt +
+    '<iframe src="https://www.youtube.com/embed/' + s.yt +
     '?autoplay=1&playsinline=1&rel=0" ' +
     'allow="autoplay; encrypted-media; picture-in-picture" ' +
     'allowfullscreen></iframe>';
@@ -441,16 +375,15 @@ function renderTeams() {
   teams.forEach((t, idx) => {
     const row = document.createElement('div');
     row.className = 'team-row';
-    row.innerHTML = `
-      <div style="flex:1;">
-        <div class="team-name">${escapeHtml(t.name)}</div>
-        <div class="score-buttons">
-          <button class="btn-good"  onclick="changeScore(${idx}, 1)">+1 Goed</button>
-          <button class="btn-wrong" onclick="changeScore(${idx}, -1)">−1</button>
-        </div>
-      </div>
-      <div class="team-score">${t.score}</div>
-    `;
+    row.innerHTML =
+      '<div style="flex:1;">' +
+        '<div class="team-name">' + escapeHtml(t.name) + '</div>' +
+        '<div class="score-buttons">' +
+          '<button class="btn-good"  onclick="changeScore(' + idx + ', 1)">+1 Goed</button>' +
+          '<button class="btn-wrong" onclick="changeScore(' + idx + ', -1)">\u22121</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="team-score">' + t.score + '</div>';
     list.appendChild(row);
   });
 }
@@ -464,31 +397,19 @@ function toggleAnswer() {
   answerShown = !answerShown;
   const box = document.getElementById('answerBox');
   const btn = document.getElementById('answerBtn');
-  if (answerShown) {
-    box.classList.remove('hidden');
-    btn.textContent = 'Verberg antwoord';
-  } else {
-    box.classList.add('hidden');
-    btn.textContent = 'Toon antwoord';
-  }
+  if (answerShown) { box.classList.remove('hidden'); btn.textContent = 'Verberg antwoord'; }
+  else { box.classList.add('hidden'); btn.textContent = 'Toon antwoord'; }
 }
 
 function nextQ() {
-  if (current < questions.length - 1) {
-    current++;
-    renderQuestion();
-    window.scrollTo(0, 0);
+  if (current < slides.length - 1) {
+    current++; renderSlide(); window.scrollTo(0, 0);
   } else {
     finish();
   }
 }
-
 function prevQ() {
-  if (current > 0) {
-    current--;
-    renderQuestion();
-    window.scrollTo(0, 0);
-  }
+  if (current > 0) { current--; renderSlide(); window.scrollTo(0, 0); }
 }
 
 function finish() {
@@ -497,10 +418,9 @@ function finish() {
   const sorted = [...teams].sort((a, b) => b.score - a.score);
   let html = '<div style="margin:16px 0;">';
   sorted.forEach((t, i) => {
-    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '⭐';
-    html += `<div style="font-size:26px; margin:10px 0; font-weight:700;">
-               ${medal} ${escapeHtml(t.name)}: ${t.score} punten
-             </div>`;
+    const medal = i === 0 ? '\uD83E\uDD47' : i === 1 ? '\uD83E\uDD48' : i === 2 ? '\uD83E\uDD49' : '\u2B50';
+    html += '<div style="font-size:26px; margin:10px 0; font-weight:700;">' +
+      medal + ' ' + escapeHtml(t.name) + ': ' + t.score + ' punten</div>';
   });
   html += '</div>';
   document.getElementById('finalScores').innerHTML = html || '<p>Quiz voltooid!</p>';
